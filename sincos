@@ -1,0 +1,78 @@
+//Bokenova Marzhan 
+//3En04E
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+#include <string.h>
+#include <ctype.h>
+#include <unistd.h>
+
+int main(int argc,char **argv)
+{
+    int mm;
+    int sflag=0;
+    int cflag=0;
+    int mmflag=0;
+    double val;
+    if(argc<2){
+      printf("usage:sincos angle\n");
+      printf("only sine :sincos -s angle\n");
+      printf("only cosine :sincos -c angle\n");
+	    
+      return 0;
+}
+
+    else if(argc==2){
+      double n=atof(argv[1]);
+      double sin_v=sin(n); 
+      double cos_v=cos(n);
+      printf("%f\n",sin_v);
+      printf("%f\n",cos_v);
+	
+	return 0;
+}  
+else{
+    
+
+    while((mm=getopt(argc,argv,"s:c:"))!=-1){
+	switch(mm){
+	  case 's':
+	    sflag=1;
+	    val=atof(optarg);
+	    mmflag=1;
+	    break;
+	  case 'c':
+            cflag=1;
+	    val=atof(optarg);
+	    mmflag=1;
+	    break;
+	  case '?':
+            if(optopt=='s')
+		printf(" -%c \n",optopt);
+	    if(optopt=='c')
+		printf(" -%c \n",optopt);
+	    else if (isprint(optopt))
+		printf("Unknown  '-%c'.\n",optopt);
+            return 1;
+	    default:abort();
+
+		  
+}	
+	    double sin_v=sin(val); 
+            double cos_v=cos(val);
+                     
+	    if(mmflag==1){
+	    if(sflag&&!cflag){
+	    printf("%f\n",sin_v);}
+	    else if(!sflag&&cflag){
+	    printf("%f\n",cos_v);}
+	    else if(sflag&&cflag){
+	    printf("%f\n",sin_v);
+	    printf("%f\n",cos_v);}
+}
+	    else{printf("usage:sincos angle\n");
+		 printf("only sine :sincos -s angle\n");
+		 printf("only cosine :sincos -c angle\n");}
+	}}
+}
+
